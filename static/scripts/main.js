@@ -63,7 +63,7 @@ function getContainerIds() {
       return ["movieContainer1", "movieContainer2"];
     case "news":
       return [];
-    case "movies":
+    case "DATAmovies":
       return ["combinedMovieContainer"];
     default:
       return [];
@@ -77,7 +77,7 @@ function getIdsToHide() {
       return [6, 7, 8, 9, 10, 11, 12];
     case "news":
       return [];
-    case "movies":
+    case "DATAmovies":
       return [];
     default:
       return [];

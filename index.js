@@ -1,8 +1,10 @@
 import express from 'express';
 import { engine } from 'express-handlebars';
 import fs from 'fs/promises';
+import { loadMovie, loadMovies } from "./static/scripts/movies.js";
 
 const app = express();
+
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './templates');
@@ -40,8 +42,8 @@ app.get('/', async (request, response) => {
   renderPage(response, 'index');
 });
 
-app.get('/movies', async (request, response) => {
-  renderPage(response, 'movies');
+app.get('/DATAmovies', async (request, response) => {
+  renderPage(response, 'DATAmovies');
 });
 
 app.get('/contact', async (request, response) => {
@@ -64,7 +66,18 @@ app.get('/QandA', async (request, response) => {
   renderPage(response, 'QandA');
 });
 
+app.get("/APIhome", async (req, res) => {
+  const movies = await loadMovies();
+  res.render("APIhome", { movies });
+});
+
+app.get("/movies/:movieId", async (req, res) => {
+  const movie = await loadMovie(req.params.movieId);
+  res.render("APImovie", { movie });
+});
+
+
 
 app.use('/static', express.static('./static'));
 
-app.listen(3080);
+app.listen(5080);
