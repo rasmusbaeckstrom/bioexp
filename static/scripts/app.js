@@ -9,10 +9,18 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
+//Only for test and will be removed
+const anotherresult = 999;
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../../templates"));
 app.use(expressLayouts); 
 app.set('layout', 'main'); 
+
+//Testlogic is only for test and will be removed
+app.get("/testlogic", async (req, res) => {
+  res.render("testlogic", { anotherresult });
+});
 
 app.get("/404error", async (req, res) => {
   res.status(404).render("404error");
