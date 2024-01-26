@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<h1 class="movie__headers">Filmer</h1>
+<ul class="homemovies">
+  <% movies.forEach(movie => { %>
+  <li>
+    <a href="/movies/<%= movie.id %>">
+      <%= movie.attributes.title %>
+    </a>
+  </li>
+  <% }); %>
+</ul>

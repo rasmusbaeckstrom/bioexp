@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<article class="movie">
+  <h1 class="movie__headers"><%= movie.attributes.title %></h1>
+  <div class="intro">
+    <md-block>
+      <%= movie.attributes.intro %>
+    </md-block>
+  </div>
+  <% if (movie.attributes.image) { %>
+    <img src="<%= movie.attributes.image.url %>" />
+    <% } %>
+</article>
