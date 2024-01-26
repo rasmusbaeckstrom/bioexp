@@ -1,1 +1,1 @@
-Group project changed to express-handlebars. 
+Group project changed to express-ejs. 
