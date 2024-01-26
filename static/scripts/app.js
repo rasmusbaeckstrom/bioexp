@@ -1,12 +1,18 @@
 import express from "express";
-import { engine } from "express-handlebars";
-import { loadMovie, loadMovies } from "./movies.js";
+import path from "path";
+import { fileURLToPath } from 'url';
+import expressLayouts from "express-ejs-layouts";
+import { loadMovie, loadMovies } from "../scripts/movies.js"
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
-app.engine("handlebars", engine());
-app.set("view engine", "handlebars");
-app.set("views", "./templates");
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "../../templates"));
+app.use(expressLayouts); 
+app.set('layout', 'main'); 
 
 app.get("/404error", async (req, res) => {
   res.status(404).render("404error");
@@ -59,6 +65,8 @@ app.get("/movies/:movieId", async (req, res) => {
   res.render("APImovie", { movie });
 });
 
-app.use("/static", express.static("./static"));
+
+app.use("/static", express.static(path.join(__dirname, "../../static")));
+
 
 export default app;
